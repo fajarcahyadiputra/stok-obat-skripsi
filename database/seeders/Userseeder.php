@@ -32,10 +32,18 @@ class Userseeder extends Seeder
         ]);
 
         User::create([
-            "nama" => "apoteker",
+            "nama" => "manager",
             "username" => "manager",
             "password" => bcrypt('123456'),
             "role" => "manager",
+            "status_aktif" => "aktif",
+            "avatar" => "",
+        ]);
+        User::create([
+            "nama" => "kasir",
+            "username" => "kasir",
+            "password" => bcrypt('123456'),
+            "role" => "kasir",
             "status_aktif" => "aktif",
             "avatar" => "",
         ]);

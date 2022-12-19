@@ -9,23 +9,25 @@
                 <h5>HALAMAN LAPORAN</h5>
             </div>
             <div class="card-body">
-                <form action="{{ route('laporanPdf') }}" method="post">
+                <form action="{{ route('report-pdf') }}" method="post">
                     @csrf
                     <div class="form-group">
-                        <label for="dari">Dari</label>
-                        <input type="date" name="dari" id="dari" class="form-control">
+                        <select name="option-report" id="option-report" class="form-control">
+                            <option value="all">Semua Data</option>
+                            <option value="range-date">Berdasarkan Tanggal</option>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label for="sampai">Sampai</label>
-                        <input type="date" name="sampai" id="sampai" class="form-control">
+                    <div class="from-group" id="box-range-date">
+
                     </div>
                     <div class="form-group">
                         <label for="laporan">Type Laporan</label>
                         <select required name="laporan" id="laporan" class="custom-select">
                             <option value="" disabled hidden selected>-- Pilih Laporan --</option>
-                            <option value="masuk">Barang Masuk</option>
-                            <option value="keluar">Barang Keluar</option>
-                            <option value="stok-akhir">Stok Akhir</option>
+                            <option value="order">Order</option>
+                            <option value="obat-masuk">Obat Masuk</option>
+                            <option value="customer">Customer</option>
+                            <option value="obat">Obat</option>
                         </select>
                     </div>
                     <button class="btn btn-success" type="submit">Save</button>
@@ -38,6 +40,23 @@
 
 
 @section('javascript')
+    <script>
+        $(document).on("change", "#option-report", function() {
+            const optionReport = $(this).val();
+            console.log(optionReport);
+            $("#box-range-date").html(``)
+            if (optionReport == 'range-date') {
+                $("#box-range-date").html(`<div class="form-group">
+                    <label for="dari">Dari</label>
+                    <input type="date" name="dari" id="dari" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="sampai">Sampai</label>
+                    <input type="date" name="sampai" id="sampai" class="form-control">
+                </div>`)
+            }
+        })
+    </script>
 
 
 @stop

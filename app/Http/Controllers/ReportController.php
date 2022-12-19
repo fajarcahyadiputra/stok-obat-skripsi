@@ -7,7 +7,11 @@ use Barryvdh\DomPDF\Facade as PDF;
 use App\Models\BarangKeluar;
 use App\Models\BarangMasuk;
 use App\Models\Barang;
+use App\Models\Customer;
 use App\Models\DetailBarangkeluar;
+use App\Models\Obat;
+use App\Models\ObatMasuk;
+use App\Models\Transaksi;
 use Carbon\Carbon;
 
 class ReportController extends Controller
@@ -16,38 +20,49 @@ class ReportController extends Controller
     {
         return view('admin.laporan.index_laporan');
     }
-    public function laporanPdf()
+    public function reportPdf()
     {
         if (request()->input('dari') &&  request()->input('sampai')) {
             $dari =   Carbon::createFromFormat('Y-m-d', request()->input('dari'));
             $sampai = Carbon::createFromFormat('Y-m-d', request()->input('sampai'));
         }
-        if (request()->input('laporan') == 'masuk') {
-            $dataMasuk = BarangMasuk::laporan($dari, $sampai);
-            return PDF::loadView('admin.barang_masuk.reportPdf', compact('dataMasuk'))->stream('laporan_barang_masuk.pdf');
-        } else if (request()->input('laporan') == "keluar") {
-            $barang_keluar = DetailBarangkeluar::laporan($dari, $sampai);
-            return PDF::loadView('admin.barang_keluar.reportPdf', compact('barang_keluar'))->stream('laporan_barang_keluar.pdf');
-        } else {
-            $dataBarang = [];
-            // $stokAkhir = Barang::with('barangkeluar', 'barangMasuk')->whereBetween('created_at', [$dari, $sampai])->get()->toArray();
-            $stokAkhir = Barang::with('barangkeluar', 'barangMasuk')->get()->toArray();
-            foreach ($stokAkhir as $barang) {
-                $totalkeluar = 0;
-                $totalmasuk = 0;
-                foreach ($barang['barangkeluar'] as $barangkeluar) {
-                    $totalkeluar +=  $barangkeluar['jumlah'];
-                }
-                if (count($barang['barang_masuk']) > 0) {
-                    foreach ($barang['barang_masuk'] as $barangMasuk) {
-                        $totalmasuk +=  $barangMasuk['jumlah'];
-                    }
-                }
-                $barang['totalKeluar'] = $totalkeluar;
-                $barang['totalMasuk'] = $totalmasuk;
-                array_push($dataBarang, $barang);
+        if (request()->input('laporan') == 'order') {
+            //laporan order
+            if (request()->input('option-report') == "all") {
+                $orders = Transaksi::with("user", "customer")->get();
+            } else {
+                $orders = Transaksi::with("user", "customer")->whereDate('created_at', '>=', $dari)
+                    ->whereDate('created_at', '<=', $sampai)->get();
             }
-            return PDF::loadView("admin.barang.reportStokAkhir", ['dataBarang' => $dataBarang])->stream("laporan_stok_barang_akhir.pdf");
+            return PDF::loadView('admin.laporan.laporan-order-obat', compact('orders'))->stream('laporan_order_obat.pdf');
+        } else if (request()->input('laporan') == "obat-masuk") {
+            //laporan obat masuk
+            if (request()->input('option-report') == "all") {
+                $obat_masuk = ObatMasuk::with("obat", "supplier", "satuan")->get();
+            } else {
+                $obat_masuk = ObatMasuk::with("obat", "supplier", "satuan")->whereDate('created_at', '>=', $dari)
+                    ->whereDate('created_at', '<=', $sampai)->get();
+            }
+            // dd($obat_masuk);
+            return PDF::loadView('admin.laporan.laporan-obat-masuk', compact('obat_masuk'))->stream('laporan_obat_masuk.pdf');
+        } else if (request()->input('laporan') == "customer") {
+            //laporan customer
+            if (request()->input('option-report') == "all") {
+                $customers = Customer::all();
+            } else {
+                $customers = Customer::whereDate('created_at', '>=', $dari)
+                    ->whereDate('created_at', '<=', $sampai)->get();
+            }
+            return PDF::loadView('admin.laporan.laporan-customer', compact('customers'))->stream('laporan_customer.pdf');
+        } else if (request()->input('laporan') == "obat") {
+            //laporan obat
+            if (request()->input('option-report') == "all") {
+                $obats = Obat::with("detailTransaksi", "obatMasuk")->get();
+            } else {
+                $obats = Obat::with("detailTransaksi", "obatMasuk")->whereDate('created_at', '>=', $dari)
+                    ->whereDate('created_at', '<=', $sampai)->get();
+            }
+            return PDF::loadView('admin.laporan.laporan-obat', compact('obats'))->stream('laporan_obat.pdf');
         }
     }
 }

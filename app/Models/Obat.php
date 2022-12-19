@@ -32,8 +32,12 @@ class Obat extends Model
     {
         return $this->hasOne(Satuan::class, "id", "satuan_id");
     }
-    // public function barangMasuk()
-    // {
-    //     return $this->hasMany(BarangMasuk::class, 'id_barang');
-    // }
+    public function detailTransaksi()
+    {
+        return $this->hasMany(DetailTransaksi::class, 'kode_obat');
+    }
+    public function obatMasuk()
+    {
+        return $this->hasMany(ObatMasuk::class, 'kode_obat');
+    }
 }

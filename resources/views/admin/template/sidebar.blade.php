@@ -21,70 +21,84 @@
         @endif --}}
         <hr class="sidebar-divider">
 
-        <li class="nav-item {{ request()->is('user') ? 'active' : '' }}">
-            <a class="nav-link {{ request()->is('user') ? 'text-primary' : '' }}" href="/user">
-                <i class="fas fa-users"></i>
-                <span>Data Pengguna</span></a>
-        </li>
-        <hr class="sidebar-divider">
+        @if (auth()->user()->role == 'manager')
+            <li class="nav-item {{ request()->is('user') ? 'active' : '' }}">
+                <a class="nav-link {{ request()->is('user') ? 'text-primary' : '' }}" href="/user">
+                    <i class="fas fa-users"></i>
+                    <span>Data Pengguna</span></a>
+            </li>
+            <hr class="sidebar-divider">
+        @endif
+        @if (auth()->user()->role == 'apoteker' || auth()->user()->role == 'manager')
+            <li class="nav-item {{ request()->is('obat') ? 'active' : '' }}">
+                <a class="nav-link {{ request()->is('obat') ? 'text-primary' : '' }}" href="/obat">
+                    <i class="fas fa-pills"></i>
+                    <span>Obat</span></a>
+            </li>
+            <hr class="sidebar-divider">
+        @endif
 
-        <li class="nav-item {{ request()->is('obat') ? 'active' : '' }}">
-            <a class="nav-link {{ request()->is('obat') ? 'text-primary' : '' }}" href="/obat">
-                <i class="fas fa-sitemap"></i>
-                <span>Obat</span></a>
-        </li>
+        @if (auth()->user()->role == 'apoteker')
+            <li class="nav-item {{ request()->is('satuan') ? 'active' : '' }}">
+                <a class="nav-link {{ request()->is('satuan') ? 'text-primary' : '' }}" href="/satuan">
+                    <i class="fas fa-sitemap"></i>
+                    <span>Satuan</span></a>
+            </li>
+            <hr class="sidebar-divider">
+        @endif
 
-        <hr class="sidebar-divider">
+        {{-- menu customer --}}
+        @if (auth()->user()->role == 'kasir' || auth()->user()->role == 'manager')
+            <li class="nav-item {{ request()->is('customer') ? 'active' : '' }}">
+                <a class="nav-link {{ request()->is('customer') ? 'text-primary' : '' }}" href="/customer">
+                    <i class="fas fa-users"></i>
+                    <span>Customer</span></a>
+            </li>
+            <hr class="sidebar-divider">
+        @endif
+        @if (auth()->user()->role == 'apoteker')
+            <li class="nav-item {{ request()->is('supplier') ? 'active' : '' }}">
+                <a class="nav-link {{ request()->is('supplier') ? 'text-primary' : '' }}" href="/supplier">
+                    <i class="fas fa-truck"></i>
+                    <span>Supplier</span></a>
+            </li>
+            <hr class="sidebar-divider">
+        @endif
 
-        <li class="nav-item {{ request()->is('satuan') ? 'active' : '' }}">
-            <a class="nav-link {{ request()->is('satuan') ? 'text-primary' : '' }}" href="/satuan">
-                <i class="fas fa-sitemap"></i>
-                <span>Satuan</span></a>
-        </li>
-
-        <hr class="sidebar-divider">
-
-        <li class="nav-item {{ request()->is('customer') ? 'active' : '' }}">
-            <a class="nav-link {{ request()->is('customer') ? 'text-primary' : '' }}" href="/customer">
-                <i class="fas fa-sitemap"></i>
-                <span>Customer</span></a>
-        </li>
-
-        <hr class="sidebar-divider">
-
-        <li class="nav-item {{ request()->is('supplier') ? 'active' : '' }}">
-            <a class="nav-link {{ request()->is('supplier') ? 'text-primary' : '' }}" href="/supplier">
-                <i class="fas fa-boxes"></i>
-                <span>Supplier</span></a>
-        </li>
-
-        <hr class="sidebar-divider">
-
-        <li
-            class="nav-item {{ request()->is('obat-masuk') ? 'active' : '' }}{{ request()->is('barang-keluar') ? 'active' : '' }}">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
-                aria-expanded="true" aria-controls="collapseBootstrap">
-                <i class="far fa-fw fa-window-maximize"></i>
-                <span>Transaksi</span>
-            </a>
-            <div id="collapseBootstrap"
-                class="collapse {{ request()->is('obat-masuk') ? 'show' : '' }}{{ request()->is('order-obat') ? 'show' : '' }}"
-                aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item {{ request()->is('obat-masuk') ? 'text-primary' : '' }}"
-                        href="/obat-masuk">Barang Masuk</a>
-                    <a class="collapse-item {{ request()->is('order-obat') ? 'text-primary' : '' }}"
-                        href="/order-obat">Order Obat</a>
+        {{-- menu transaksi --}}
+        @if (auth()->user()->role == 'apoteker' ||
+            auth()->user()->role == 'kasir' ||
+            auth()->user()->role == 'admin' ||
+            auth()->user()->role == 'manager')
+            <li
+                class="nav-item {{ request()->is('obat-masuk') ? 'active' : '' }}{{ request()->is('barang-keluar') ? 'active' : '' }}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
+                    aria-expanded="true" aria-controls="collapseBootstrap">
+                    <i class="fas fa-cart-plus"></i>
+                    <span>Transaksi</span>
+                </a>
+                <div id="collapseBootstrap"
+                    class="collapse {{ request()->is('obat-masuk') ? 'show' : '' }}{{ request()->is('order-obat') ? 'show' : '' }}"
+                    aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        @if (auth()->user()->role != 'kasir')
+                            <a class="collapse-item {{ request()->is('obat-masuk') ? 'text-primary' : '' }}"
+                                href="/obat-masuk">Obat Masuk</a>
+                        @endif
+                        @if (auth()->user()->role != 'apoteker')
+                            <a class="collapse-item {{ request()->is('order-obat') ? 'text-primary' : '' }}"
+                                href="/order-obat">Order Obat</a>
+                        @endif
+                    </div>
                 </div>
-            </div>
-        </li>
-
-        <hr class="sidebar-divider">
-
-        <li class="nav-item {{ request()->is('laporan') ? 'active' : '' }}">
-            <a class="nav-link {{ request()->is('laporan') ? 'text-primary' : '' }}" href="/laporan">
-                <i class="fas fa-boxes"></i>
-                <span>laporan</span></a>
+            </li>
+            <hr class="sidebar-divider">
+        @endif
+        {{-- menu report --}}
+        <li class="nav-item {{ request()->is('report') ? 'active' : '' }}">
+            <a class="nav-link {{ request()->is('report') ? 'text-primary' : '' }}" href="/report">
+                <i class="fas fa-file-word"></i>
+                <span>Report</span></a>
         </li>
 
         <hr class="sidebar-divider">

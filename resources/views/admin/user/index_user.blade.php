@@ -16,7 +16,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
-                                <th>Email</th>
+                                <th>Username</th>
                                 <th>Role</th>
                                 <th>Status Aktif</th>
                                 <th>Avatar</th>
@@ -28,7 +28,7 @@
                                 <tr>
                                     <td>{{ $no + 1 }}</td>
                                     <td>{{ $dt->nama }}</td>
-                                    <td>{{ $dt->email }}</td>
+                                    <td>{{ $dt->username }}</td>
                                     <td>{{ $dt->role }}</td>
                                     <td>{{ $dt->status_aktif }}</td>
                                     <td><img width="150" src="{{ env('APP_URL') . $dt->avatar }}" alt="user image"></td>
@@ -69,15 +69,16 @@
                             <input type="type" name="nama" id="nama" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="type" name="email" id="email" class="form-control">
+                            <label for="username">Username</label>
+                            <input type="type" name="username" id="username" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="level">Level</label>
                             <select name="level" id="level" class="custom-select">
                                 <option value="" disabled hidden selected>-- Piliih Role --</option>
                                 <option value="admin">Admin</option>
-                                <option value="super-admin">Superadmin</option>
+                                <option value="apoteker">Apotoker</option>
+                                <option value="manager">Manager</option>
                                 {{-- <option value="sales">Sales</option> --}}
                             </select>
                         </div>
@@ -298,15 +299,16 @@
                         <input type="hidden" id="id" value="${hasil.id}">
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="type" name="email" id="email" value="${hasil.email}" class="form-control">
+                        <label for="username">Username</label>
+                        <input type="type" name="username" id="username" value="${hasil.username}" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="Role">Role</label>
                         <select name="role" id="role" class="custom-select">
                             <option value="" disabled hidden selected>-- Piliih Role --</option>
                             <option ${hasil.role === 'admin'?'selected':''} value="admin">Admin</option>
-                            <option ${hasil.role === 'super-admin'?'selected':''} value="super-admin">Super Admin</option>
+                            <option ${hasil.role === 'apoteker'?'selected':''} value="apoteker">Apoteker</option>
+                            <option ${hasil.role === 'manager'?'selected':''} value="manager">Manager</option>
                         </select>
                     </div>
                     <div class="form-group">

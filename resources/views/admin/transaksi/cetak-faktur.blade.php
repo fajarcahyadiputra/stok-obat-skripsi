@@ -19,15 +19,15 @@
     <center>
         <table style='width:550px; font-size:8pt; font-family:calibri; border-collapse: collapse;' border='0'>
             <td width='70%' align='left' style='padding-right:80px; vertical-align:top'>
-                <span style='font-size:12pt'><b>Nama Toko</b></span></br>
-                Alamat Toko Alamat Toko Alamat Toko Alamat Toko Alamat Toko Alamat Toko Alamat Toko Alamat Toko Alamat
-                Toko Alamat Toko </br>
+                <span style='font-size:12pt'><b>Apotek Swadaya Sehat</b></span></br>
+                Jl. Swadaya Raya No.29, RT.9/RW.5, Duren Sawit, Kec. Duren Sawit, Kota Jakarta Timur, Daerah Khusus
+                Ibukota Jakarta 13440</br>
                 Telp : 0594094545
             </td>
             <td style='vertical-align:top' width='30%' align='left'>
                 <b><span style='font-size:12pt'>FAKTUR PENJUALAN</span></b></br>
                 No Trans. : {{ $transaksi->nomer_faktur }}</br>
-                Tanggal :06 Januari 2022</br>
+                Tanggal :{{ date('Y-m-d H:i:s') }}</br>
             </td>
         </table>
         <table style='width:550px; font-size:8pt; font-family:calibri; border-collapse: collapse;' border='0'>
@@ -43,15 +43,13 @@
             border='1'>
 
             <tr align='center'>
-                <td width='10%'>Kode Obat</td>
-                <td width='20%'>Nama Obat</td>
+                <td width='30%'>Nama Obat</td>
                 <td width='13%'>Harga Satuan</td>
                 <td width='4%'>Qty</td>
                 <td width='7%'>Discount</td>
                 <td width='13%'>Total Harga</td>
                 @foreach ($detail_transaksi as $detail)
-            <tr>
-                <td>{{ $detail->kode_obat }}</td>
+            <tr align="center">
                 <td>{{ $detail->nama_obat }}</td>
                 <td>Rp.{{ number_format($detail->harga_satuan, 2, ',', '.') }}</td>
                 <td>{{ $detail->jumlah }}</td>
@@ -65,7 +63,7 @@
                 </td> --}}
             </tr>
             <tr>
-                <td colspan='5'>
+                <td colspan='4'>
                     <div style='text-align:right'>Sub Total : </div>
                 </td>
                 <td style='text-align:right'>Rp.{{ number_format($transaksi->sub_total, 2, ',', '.') }}</td>
@@ -95,8 +93,18 @@
                 {{-- <td align='center'>Diterima Oleh,</br></br><u>(............)</u></td> --}}
                 {{-- <td style='border:1px solid black; padding:5px; text-align:left; width:30%'></td> --}}
 
-                <td style="width: 100%" align='right'>TTD,</br></br> <img src="" alt="tanda tangan">
-                    <br><u>(...............................)</u>
+                <td style="width: 100%" align='right'>jakarta, {{ date('Y-m-d') }}
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    <div style="width: 80px; text-align: center">
+                        <p style="margin-bottom: 0">({{ $transaksi->user->nama }})</p>
+                        <hr>
+                        <p style="margin-top: 0">Kasir</p>
+                    </div>
                 </td>
             </tr>
         </table>

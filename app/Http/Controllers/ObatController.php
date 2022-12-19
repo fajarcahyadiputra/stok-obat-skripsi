@@ -24,6 +24,7 @@ class ObatController extends Controller
     public function store(Request $request)
     {
         $data = $request->except('_token');
+        $data['stok_awal'] = $data['jumlah'];
         //buat upload gambar
         if ($request->hasFile('pic')) {
             if ($request->file('pic')->isValid()) {

@@ -22,7 +22,10 @@
                                 <th>Khasiat</th>
                                 <th>Satuan</th>
                                 <th>tanggal Kadaluarsa</th>
-                                <th>Action</th>
+                                <th>Harga</th>
+                                @if (auth()->user()->role == 'apoteker')
+                                    <th>Action</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -34,16 +37,17 @@
                                     <td>{{ $dt->khasiat_obat }}</td>
                                     <td>{{ $dt->satuan->satuan }}</td>
                                     <td>{{ $dt->tanggal_kadaluarsa }}</td>
-                                    <td class="text-center">
-                                        <button data-id="{{ $dt->kode_obat }}" id="btn-edit"
-                                            class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
-                                        <button data-id="{{ $dt->kode_obat }}" id="btn-hapus"
-                                            class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                                        <button data-id="{{ $dt->kode_obat }}" id="btn-detail"
-                                            class="btn btn-info btn-sm"><i class="fa fa-info"></i></button>
-                                    </td>
-                                    {{-- @if (auth()->user()->role == 'super-admin')
-                                    @endif --}}
+                                    <td>Rp.{{ number_format($dt->harga_satuan, 2, ',', '.') }}</td>
+                                    @if (auth()->user()->role == 'apoteker')
+                                        <td class="text-center">
+                                            <button data-id="{{ $dt->kode_obat }}" id="btn-edit"
+                                                class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
+                                            <button data-id="{{ $dt->kode_obat }}" id="btn-hapus"
+                                                class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                            <button data-id="{{ $dt->kode_obat }}" id="btn-detail"
+                                                class="btn btn-info btn-sm"><i class="fa fa-info"></i></button>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

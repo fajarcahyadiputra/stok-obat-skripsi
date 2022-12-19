@@ -29,16 +29,21 @@
                                     <td>{{ $dt->nomer_faktur }}</td>
                                     <td>{{ $dt->customer->nama . '-' . $dt->customer->nik }}</td>
                                     <td>{{ $dt->tanggal_transaksi }}</td>
-                                    <td>{{ number_format($dt->sub_total, 2, ',', '.') }}</td>
+                                    <td>Rp.{{ number_format($dt->sub_total, 2, ',', '.') }}</td>
                                     <td class="text-center">
-                                        <button data-id="{{ $dt->nomer_faktur }}" id="btn-hapus"
-                                            class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                                        <a href="{{ URL::to('/transaksi/detail/' . $dt->nomer_faktur) }}"
-                                            class="btn btn-info btn-sm"><i class="fa fa-info"></i></a>
-                                        <a href="{{ URL::to('/cetak-faktur/pdf/' . $dt->nomer_faktur) }}"
-                                            class="btn btn-info btn-sm"><i class="fas fa-file-invoice"></i></a>
-                                        <a href="/detail-barang-keluar/{{ $dt->nomer_faktur }}"
-                                            class="btn btn-info btn-sm"><i class="fas fa-check"></i></a>
+                                        @if (auth()->user()->role == 'kasir')
+                                            <button data-id="{{ $dt->nomer_faktur }}" id="btn-hapus"
+                                                class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                            <a href="{{ URL::to('/transaksi/detail/' . $dt->nomer_faktur) }}"
+                                                class="btn btn-info btn-sm"><i class="fa fa-info"></i></a>
+                                            <a href="{{ URL::to('/cetak-faktur/pdf/' . $dt->nomer_faktur) }}"
+                                                class="btn btn-info btn-sm"><i class="fas fa-file-invoice"></i></a>
+                                            {{-- <a href="/detail-barang-keluar/{{ $dt->nomer_faktur }}"
+                                                class="btn btn-info btn-sm"><i class="fas fa-check"></i></a> --}}
+                                        @else
+                                            <a href="{{ URL::to('/transaksi/detail/' . $dt->nomer_faktur) }}"
+                                                class="btn btn-info btn-sm"><i class="fa fa-info"></i></a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

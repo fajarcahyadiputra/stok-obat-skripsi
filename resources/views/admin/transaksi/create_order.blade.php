@@ -102,7 +102,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="nomer_faktur">Nomer Faktur</label>
-                                    <input id="nomer_faktur" type="text" name="nomer_faktur" readonly
+                                    <input required id="nomer_faktur" type="text" name="nomer_faktur" readonly
                                         value="{{ $no_faktur }}" class="form-control">
                                 </div>
                             </div>
@@ -116,7 +116,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="nik">Customer </label>
-                                    <select name="nik" class="custom-select" id="nik">
+                                    <select required name="nik" class="custom-select" id="nik">
                                         <option value="" disabled selected hidden>-- Pilih Customer --</option>
                                         @foreach ($customers as $customer)
                                             <option value="{{ $customer->nik }}">{{ $customer->nama }} -
@@ -229,9 +229,8 @@
                     dataType: 'json',
                     type: 'POST',
                     success: function(result) {
-                        console.log(result);
                         let jumlah = result.jumlah;
-                        $(`#harga_satuan`).val(result.harga_satuan);
+                        $(`#harga_satuan`).val(formatRupiah(result.harga_satuan));
                         $(`#total_harga`).val(formatRupiah(result.total_harga))
                         $(`#sisa_stok`).val(result.sisa_obat);
                         $(`#stok_sebelumnya`).val(result.jumlah);

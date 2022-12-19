@@ -36,4 +36,13 @@ class Transaksi extends Model
     {
         return $this->belongsTo(Customer::class, 'nik');
     }
+    public static function laporan($dari, $sampai)
+    {
+        return DB::table("transaksi")
+            ->select("transaksi.*", "customer.nama as nama_customer", "users.nama as nama_kasir")
+            ->join('customer', "customer.nik", "=", "transaksi.nik")
+            ->join('users', "users.id", "=", "transaksi.kasir")
+            ->whereBetween('transaksi.created_at', [$dari, $sampai])
+            ->get();
+    }
 }

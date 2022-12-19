@@ -15,35 +15,39 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Kode Obat</th>
+                                <th>Nama Obat</th>
                                 <th>Supplier</th>
                                 <th>Satuan</th>
                                 <th>Jumlah Sebelumnya</th>
                                 <th>Jumlah Masuk</th>
                                 <th>Total Stok</th>
                                 <th>Tanggal Masuk</th>
-                                <th>Action</th>
+                                @if (auth()->user()->role == 'apoteker')
+                                    <th>Action</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($obat_masuk as $no => $dt)
                                 <tr>
                                     <td>{{ $no + 1 }}</td>
-                                    <td>{{ $dt->kode_obat }}</td>
+                                    <td>{{ $dt->obat->nama }}</td>
                                     <td>{{ $dt->supplier->nama }}</td>
                                     <td>{{ $dt->satuan->satuan }}</td>
                                     <td>{{ $dt->jumlah_sebelumnya }}</td>
                                     <td>{{ $dt->jumlah }}</td>
                                     <td>{{ $dt->total_stok }}</td>
                                     <td>{{ $dt->created_at }}</td>
-                                    <td class="text-center">
-                                        <a href="{{ route('obat-masuk.edit', ['obat_masuk' => $dt->id]) }}" id="btn-edit"
-                                            class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
-                                        <button data-id="{{ $dt->id }}" id="btn-hapus"
-                                            class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                                        {{-- <button data-id="{{ $dt->id }}" id="btn-detail"
+                                    @if (auth()->user()->role == 'apoteker')
+                                        <td class="text-center">
+                                            <a href="{{ route('obat-masuk.edit', ['obat_masuk' => $dt->id]) }}"
+                                                id="btn-edit" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                            <button data-id="{{ $dt->id }}" id="btn-hapus"
+                                                class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                            {{-- <button data-id="{{ $dt->id }}" id="btn-detail"
                                             class="btn btn-info btn-sm"><i class="fa fa-info"></i></button> --}}
-                                    </td>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

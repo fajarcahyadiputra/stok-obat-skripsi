@@ -18,7 +18,9 @@
                                 <th>Kode Obat</th>
                                 <th>Nama Obat</th>
                                 <th>Satuan</th>
-                                <th>Jumlah</th>
+                                <th>Stok Sebelumnya</th>
+                                <th>Jumlah Keluar</th>
+                                <th>Sisa Stok</th>
                                 <th>Total Harga</th>
                             </tr>
                         </thead>
@@ -29,12 +31,14 @@
                                     <td>{{ $dt->kode_obat }}</td>
                                     <td>{{ $dt->nama_obat }}</td>
                                     <td>{{ $dt->satuan->satuan }}</td>
+                                    <td>{{ $dt->stok_sebelumnya }}</td>
                                     <td>{{ $dt->jumlah }}</td>
+                                    <td>{{ $dt->sisa_stok }}</td>
                                     <td>Rp.{{ number_format($dt->harga_satuan, 2, ',', '.') }}</td>
                                 </tr>
                             @endforeach
                             <tr>
-                                <th colspan="5">Sub Total:</th>
+                                <th colspan="7">Sub Total:</th>
                                 <td>Rp.{{ number_format($transaksi->sub_total, 2, ',', '.') }}</td>
                             </tr>
                         </tbody>

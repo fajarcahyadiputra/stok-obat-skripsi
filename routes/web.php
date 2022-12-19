@@ -50,13 +50,14 @@ Route::group(['middleware' => ['auth', 'permision']], function () {
     Route::get('/transaksi/detail/{nomer_faktur}', [OrderObatController::class, 'detailTransaksi']);
     // Route::get('/tambah-barang-masuk', [BarangMasukController::class, 'halamanTambah'])->name('tambah.barang-masuk');
     // Route::get('/edit-barang-masuk/{id}', [BarangMasukController::class, 'halamanEdit'])->name('edit.barang_masuk');
-    Route::resource('/barang-keluar', BarangKeluarController::class);
-    Route::get('/tambah-barang-keluar', [BarangKeluarController::class, 'halamanTambah'])->name('tambah.barang-keluar');
-    Route::get('/edit-barang-keluar/{id}', [BarangKeluarController::class, 'halamanEdit'])->name('edit.barang-keluar');
-    Route::get('/surat-jalan-barang-keluar/{id}', [BarangKeluarController::class, 'laporanSuratjalan'])->name('suratjalan.barang-keluar');
-    Route::get('/detail-barang-keluar/{id}', [BarangKeluarController::class, 'viewDetailBarangKeluar']);
+    // Route::resource('/barang-keluar', BarangKeluarController::class);
+    // Route::get('/tambah-barang-keluar', [BarangKeluarController::class, 'halamanTambah'])->name('tambah.barang-keluar');
+    // Route::get('/edit-barang-keluar/{id}', [BarangKeluarController::class, 'halamanEdit'])->name('edit.barang-keluar');
+    // Route::get('/surat-jalan-barang-keluar/{id}', [BarangKeluarController::class, 'laporanSuratjalan'])->name('suratjalan.barang-keluar');
+    // Route::get('/detail-barang-keluar/{id}', [BarangKeluarController::class, 'viewDetailBarangKeluar']);
 
-    Route::post('/export-laporan', [ReportController::class, 'laporanPdf'])->name('laporanPdf');
+    Route::post('/report-pdf', [ReportController::class, 'reportPdf'])->name('report-pdf');
+    Route::get('/report', [ReportController::class, 'index'])->name('report-index');
 
     Route::post('/tambah-keranjang', [OrderObatController::class, 'addCart'])->name('tambahObatToCart');
 });

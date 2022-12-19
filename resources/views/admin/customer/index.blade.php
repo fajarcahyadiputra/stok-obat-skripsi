@@ -19,7 +19,9 @@
                                 <th>Nama</th>
                                 <th>Alamat</th>
                                 <th>Nomer TLPN</th>
-                                <th>Action</th>
+                                @if (auth()->user()->role == 'kasir')
+                                    <th>Action</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -30,12 +32,14 @@
                                     <td>{{ $dt->nama }}</td>
                                     <td>{{ $dt->alamat }}</td>
                                     <td>{{ $dt->nomer_tlpn }}</td>
-                                    <td class="text-center">
-                                        <button data-id="{{ $dt->nik }}" id="btn-edit"
-                                            class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
-                                        <button data-id="{{ $dt->nik }}" id="btn-hapus"
-                                            class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
-                                    </td>
+                                    @if (auth()->user()->role == 'kasir')
+                                        <td class="text-center">
+                                            <button data-id="{{ $dt->nik }}" id="btn-edit"
+                                                class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
+                                            <button data-id="{{ $dt->nik }}" id="btn-hapus"
+                                                class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

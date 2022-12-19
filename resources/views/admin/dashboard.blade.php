@@ -13,7 +13,7 @@
                     <div class="col-sm-4">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Total uang yang masuk hari ini:</h5>
+                                <h6 class="card-title">Total uang yang masuk hari ini:</h6>
                                 <p class="card-text"><b>Rp.{{ number_format($total_price, 2, ',', '.') }}</b>
                                 </p>
                                 {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
@@ -23,7 +23,7 @@
                     <div class="col-sm-4">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Total pembeli hari ini:</h5>
+                                <h6 class="card-title">Total pembeli hari ini:</h6>
                                 <p class="card-text text-bold"><b>{{ $total_transaksi }} Pembeli</b>
                                 </p>
                                 {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
@@ -33,8 +33,8 @@
                     <div class="col-sm-4">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Special title treatment</h5>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                                <h6 class="card-title">Total Customer:</h6>
+                                <p class="card-text"><b>{{ $total_customer }} Customer</b>
                                 </p>
                                 {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
                             </div>

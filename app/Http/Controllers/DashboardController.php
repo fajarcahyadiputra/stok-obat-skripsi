@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,7 @@ class DashboardController extends Controller
         $transaksiHariIni = Transaksi::whereDate("tanggal_transaksi", date('Y-m-d'))->get();
         $total_price = array_sum(array_column($transaksiHariIni->toArray(), 'sub_total'));
         $total_transaksi = $transaksiHariIni->count();
-        return view('admin.dashboard', compact("total_price", 'total_transaksi'));
+        $total_customer = Customer::all()->count();
+        return view('admin.dashboard', compact("total_price", 'total_transaksi', 'total_customer'));
     }
 }
