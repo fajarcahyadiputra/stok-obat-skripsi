@@ -217,7 +217,7 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="img-profile rounded-circle" src="{{ auth()->user()->avatar ? auth()->user()->avatar:'https://images.squarespace-cdn.com/content/v1/54b7b93ce4b0a3e130d5d232/1519987020970-8IQ7F6Z61LLBCX85A65S/icon.png?format=1000w'}}" 
+                            <img class="img-profile rounded-circle" src="{{ auth()->user()->avatar ? auth()->user()->avatar:'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png'}}" 
                                 style="max-width: 60px">
                             <span class="ml-2 d-none d-lg-inline text-white small">{{ auth()->user()->nama }}</span>
                         </a>

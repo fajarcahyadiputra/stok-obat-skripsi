@@ -13,7 +13,7 @@
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover" id="datatable">
                         <thead>
-                            <tr>
+                            <tr class="">
                                 <th>No</th>
                                 <th>Nama</th>
                                 <th>Username</th>
@@ -26,12 +26,12 @@
                         <tbody>
                             @foreach ($users as $no => $dt)
                                 <tr>
-                                    <td>{{ $no + 1 }}</td>
-                                    <td>{{ $dt->nama }}</td>
-                                    <td>{{ $dt->username }}</td>
-                                    <td>{{ $dt->role }}</td>
-                                    <td>{{ $dt->nomer_tlpn }}</td>
-                                    <td><img width="150" src="{{ env('APP_URL') . $dt->avatar }}" alt="user image"></td>
+                                    <td class="align-middle">{{ $no + 1 }}</td>
+                                    <td class="align-middle">{{ $dt->nama }}</td>
+                                    <td class="align-middle">{{ $dt->username }}</td>
+                                    <td class="align-middle">{{ $dt->role }}</td>
+                                    <td class="align-middle">{{ $dt->nomer_tlpn }}</td>
+                                    <td><img width="50" src="{{$dt->avatar? env('APP_URL') . $dt->avatar:'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png' }}" alt="user image"></td>
                                     <td class="text-center">
                                         <button data-id="{{ $dt->id }}" id="btn-edit"
                                             class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>

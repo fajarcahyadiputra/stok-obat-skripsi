@@ -15,7 +15,7 @@ class Userseeder extends Seeder
     public function run()
     {
         User::create([
-            "nama" => "admin",
+            "nama" => "Admin",
             "username" => "admin",
             "password" => bcrypt('123456'),
             "role" => "admin",
@@ -24,7 +24,7 @@ class Userseeder extends Seeder
             "avatar" => "",
         ]);
         User::create([
-            "nama" => "apoteker",
+            "nama" => "Apoteker",
             "username" => "apoteker",
             "password" => bcrypt('123456'),
             "nomer_tlpn" => "0896728274",
@@ -34,7 +34,7 @@ class Userseeder extends Seeder
         ]);
 
         User::create([
-            "nama" => "manager",
+            "nama" => "Manager",
             "username" => "manager",
             "password" => bcrypt('123456'),
             "nomer_tlpn" => "089672884033",
