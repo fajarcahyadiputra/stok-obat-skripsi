@@ -68,7 +68,7 @@
         {{-- menu transaksi --}}
         @if (auth()->user()->role == 'apoteker' ||
             auth()->user()->role == 'kasir' ||
-            auth()->user()->role == 'admin' ||
+            auth()->user()->role == 'administrasi' ||
             auth()->user()->role == 'manager')
             <li
                 class="nav-item {{ request()->is('obat-masuk') ? 'active' : '' }}{{ request()->is('barang-keluar') ? 'active' : '' }}">
@@ -125,7 +125,7 @@
             <hr class="sidebar-divider">
         @endif
 
-        @if (auth()->user()->role === 'admin')
+        @if (auth()->user()->role === 'administrasi')
             <hr class="sidebar-divider">
             <li class="nav-item {{ request()->is('order') ? 'active' : '' }}">
                 <a class="nav-link {{ request()->is('order') ? 'text-primary' : '' }}" href="/order">
@@ -217,7 +217,8 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="img-profile rounded-circle" src="{{ auth()->user()->avatar ? auth()->user()->avatar:'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png'}}" 
+                            <img class="img-profile rounded-circle"
+                                src="{{ auth()->user()->avatar ? auth()->user()->avatar : 'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png' }}"
                                 style="max-width: 60px">
                             <span class="ml-2 d-none d-lg-inline text-white small">{{ auth()->user()->nama }}</span>
                         </a>

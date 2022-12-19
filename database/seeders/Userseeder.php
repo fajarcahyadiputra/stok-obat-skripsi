@@ -18,7 +18,7 @@ class Userseeder extends Seeder
             "nama" => "Admin",
             "username" => "admin",
             "password" => bcrypt('123456'),
-            "role" => "admin",
+            "role" => "administrasi",
             "nomer_tlpn" => "0896726478264",
             "status_aktif" => "aktif",
             "avatar" => "",

@@ -56,6 +56,9 @@ class OrderObatController extends Controller
             return response()->json($obat);
         }
         try {
+            if (!request()->session()->exists('dataObat')) {
+                return response()->json(false);
+            }
             $data = $request->except('_token');
             $cartData = request()->session()->get('dataObat');
             $data['kasir'] = auth()->user()->id;

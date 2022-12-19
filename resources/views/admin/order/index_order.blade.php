@@ -34,10 +34,10 @@
                             <td>{{$dt->jumlah}}</td>
                             <td><span style="background-color: green; padding: 5px; border-radius: 20px; color: white">{{$dt->status}}</span></td>
                             <td>{{$dt->keterangan}}</td>
-                            @if (auth()->user()->role === 'admin')
+                            @if (auth()->user()->role === 'administrasi')
                             <td><button data-id="{{$dt->id}}" id="btn-close" class="btn btn-success btn-sm"><i class="fas fa-tasks"></i></button></td>
                             @endif
-                            @if (auth()->user()->role === 'sales')
+                            @if (auth()->user()->role === 'sales' || auth()->user()->role === 'manager')
                             <td class="text-center">
                                 <button data-id="{{$dt->id}}" id="btn-edit" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
                                 <button data-id="{{$dt->id}}" id="btn-hapus" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>

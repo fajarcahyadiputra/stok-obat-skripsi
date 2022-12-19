@@ -30,8 +30,8 @@
                                     <td>{{ $dt->customer->nama . '-' . $dt->customer->nik }}</td>
                                     <td>{{ $dt->tanggal_transaksi }}</td>
                                     <td>Rp.{{ number_format($dt->sub_total, 2, ',', '.') }}</td>
-                                    <td class="text-center">
-                                        @if (auth()->user()->role == 'kasir')
+                                    <td class="d-flex">
+                                        @if (auth()->user()->role == 'kasir' || auth()->user()->role === 'manager')
                                             <button data-id="{{ $dt->nomer_faktur }}" id="btn-hapus"
                                                 class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                                             <a href="{{ URL::to('/transaksi/detail/' . $dt->nomer_faktur) }}"

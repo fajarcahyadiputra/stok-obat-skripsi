@@ -23,7 +23,8 @@
                                 <th>Satuan</th>
                                 <th>tanggal Kadaluarsa</th>
                                 <th>Harga</th>
-                                @if (auth()->user()->role == 'apoteker')
+                                @if (auth()->user()->role == 'apoteker' || auth()->user()->role == 'manager')
+                                    )
                                     <th>Action</th>
                                 @endif
                             </tr>
@@ -38,7 +39,7 @@
                                     <td>{{ $dt->satuan->satuan }}</td>
                                     <td>{{ $dt->tanggal_kadaluarsa }}</td>
                                     <td>Rp.{{ number_format($dt->harga_satuan, 2, ',', '.') }}</td>
-                                    @if (auth()->user()->role == 'apoteker')
+                                    @if (auth()->user()->role == 'apoteker' || auth()->user()->role == 'manager')
                                         <td class="text-center">
                                             <button data-id="{{ $dt->kode_obat }}" id="btn-edit"
                                                 class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>

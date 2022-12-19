@@ -22,7 +22,7 @@
                                 <th>Jumlah Masuk</th>
                                 <th>Total Stok</th>
                                 <th>Tanggal Masuk</th>
-                                @if (auth()->user()->role == 'apoteker')
+                                @if (auth()->user()->role == 'apoteker' || auth()->user()->role == 'manager')
                                     <th>Action</th>
                                 @endif
                             </tr>
@@ -38,7 +38,7 @@
                                     <td>{{ $dt->jumlah }}</td>
                                     <td>{{ $dt->total_stok }}</td>
                                     <td>{{ $dt->created_at }}</td>
-                                    @if (auth()->user()->role == 'apoteker')
+                                    @if (auth()->user()->role == 'apoteker' || auth()->user()->role == 'manager')
                                         <td class="text-center">
                                             <a href="{{ route('obat-masuk.edit', ['obat_masuk' => $dt->id]) }}"
                                                 id="btn-edit" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>

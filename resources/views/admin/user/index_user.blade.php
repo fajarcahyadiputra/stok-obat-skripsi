@@ -31,7 +31,9 @@
                                     <td class="align-middle">{{ $dt->username }}</td>
                                     <td class="align-middle">{{ $dt->role }}</td>
                                     <td class="align-middle">{{ $dt->nomer_tlpn }}</td>
-                                    <td><img width="50" src="{{$dt->avatar? env('APP_URL') . $dt->avatar:'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png' }}" alt="user image"></td>
+                                    <td><img width="50"
+                                            src="{{ $dt->avatar ? env('APP_URL') . $dt->avatar : 'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png' }}"
+                                            alt="user image"></td>
                                     <td class="text-center">
                                         <button data-id="{{ $dt->id }}" id="btn-edit"
                                             class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
@@ -76,7 +78,7 @@
                             <label for="level">Level</label>
                             <select name="level" id="level" class="custom-select">
                                 <option value="" disabled hidden selected>-- Piliih Role --</option>
-                                <option value="admin">Admin</option>
+                                <option value="administrasi">Administrasi</option>
                                 <option value="apoteker">Apotoker</option>
                                 <option value="manager">Manager</option>
                                 <option value="kasir">Kasir</option>
@@ -310,7 +312,7 @@
                         <label for="Role">Role</label>
                         <select name="role" id="role" class="custom-select">
                             <option value="" disabled hidden selected>-- Piliih Role --</option>
-                            <option ${hasil.role === 'admin'?'selected':''} value="admin">Admin</option>
+                            <option ${hasil.role === 'administrasi'?'selected':''} value="administrasi">Administrasi</option>
                             <option ${hasil.role === 'apoteker'?'selected':''} value="apoteker">Apoteker</option>
                             <option ${hasil.role === 'manager'?'selected':''} value="manager">Manager</option>
                             <option ${hasil.role === 'kasir'?'selected':''} value="kasir">Kasir</option>

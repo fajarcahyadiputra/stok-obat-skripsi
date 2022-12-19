@@ -18,8 +18,8 @@
                                 <th>NIK</th>
                                 <th>Nama</th>
                                 <th>Alamat</th>
-                                <th>Nomer TLPN</th>
-                                @if (auth()->user()->role == 'kasir')
+                                <th>Nomer Telepon</th>
+                                @if (auth()->user()->role == 'kasir' || auth()->user()->role == 'manager')
                                     <th>Action</th>
                                 @endif
                             </tr>
@@ -32,7 +32,7 @@
                                     <td>{{ $dt->nama }}</td>
                                     <td>{{ $dt->alamat }}</td>
                                     <td>{{ $dt->nomer_tlpn }}</td>
-                                    @if (auth()->user()->role == 'kasir')
+                                    @if (auth()->user()->role == 'kasir' || auth()->user()->role == 'manager')
                                         <td class="text-center">
                                             <button data-id="{{ $dt->nik }}" id="btn-edit"
                                                 class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
@@ -75,7 +75,7 @@
                             <input type="type" name="nama" id="nama" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="nomer_tlpn">Nomer TLPN</label>
+                            <label for="nomer_tlpn">Nomer Telepon</label>
                             <input type="type" name="nomer_tlpn" id="nomer_tlpn" class="form-control">
                         </div>
                         <div class="form-group">
@@ -264,7 +264,7 @@
                         <input type="hidden" id="nik_key" value="${hasil.nik}" >
                     </div>
                     <div class="form-group">
-                        <label for="nomer_tlpn">Nomer TLPN</label>
+                        <label for="nomer_tlpn">Nomer Telepon</label>
                         <input type="type" name="nomer_tlpn" id="nomer_tlpn" value="${hasil.nomer_tlpn}" class="form-control">
                     </div>
                     <div class="form-group">

@@ -78,7 +78,7 @@
                     <a class="font-weight-bold small" href="register.html">Forget Password?</a>
                   </div> --}}
                                     <div class="text-center">
-                                        <span class="font-weight-bold">Apoteker</span>
+                                        <span class="font-weight-bold">Apotek Swadaya Sehat Jakarta</span>
                                     </div>
                                 </div>
                             </div>
