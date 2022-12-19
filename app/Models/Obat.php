@@ -12,7 +12,7 @@ class Obat extends Model
     protected $table = 'obat';
     protected $keyType = 'string';
     protected $primaryKey = 'kode_obat';
-    protected $fillable = ['kode_obat', 'nama', 'jumlah', 'keterangan', 'satuan_id', 'khasiat_obat', "tanggal_kadaluarsa", "pic", "harga_satuan", "aturan_pakai"];
+    protected $fillable = ['kode_obat', 'nama', 'jumlah', 'keterangan',"stok_awal", 'satuan_id', 'khasiat_obat', "tanggal_kadaluarsa", "pic", "harga_satuan", "aturan_pakai"];
     protected $casts = [
         'created_at' => 'datetime:Y-m-d H:i:s',
         'updated_at' => 'datetime:Y-m-d H:i:s',

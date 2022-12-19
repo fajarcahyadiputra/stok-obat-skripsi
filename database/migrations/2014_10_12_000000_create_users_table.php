@@ -18,8 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('nama', 50);
             $table->string('username', 100);
             $table->string('password', 200);
-            $table->enum('role', ['admin', 'apoteker', 'manager'])->default('apoteker');
+            $table->enum('role', ['admin', 'apoteker', 'manager','kasir'])->default('apoteker');
             $table->enum('status_aktif', ['aktif', 'tidak'])->default('aktif');
+            $table->string('nomer_tlpn', 15)->nullable();
             $table->string('avatar', 100)->nullable();
             $table->timestamps();
         });

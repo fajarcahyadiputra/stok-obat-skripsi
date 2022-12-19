@@ -18,7 +18,7 @@
                                 <th>Nama</th>
                                 <th>Username</th>
                                 <th>Role</th>
-                                <th>Status Aktif</th>
+                                <th>Nomer Telepon</th>
                                 <th>Avatar</th>
                                 <th>Action</th>
                             </tr>
@@ -30,7 +30,7 @@
                                     <td>{{ $dt->nama }}</td>
                                     <td>{{ $dt->username }}</td>
                                     <td>{{ $dt->role }}</td>
-                                    <td>{{ $dt->status_aktif }}</td>
+                                    <td>{{ $dt->nomer_tlpn }}</td>
                                     <td><img width="150" src="{{ env('APP_URL') . $dt->avatar }}" alt="user image"></td>
                                     <td class="text-center">
                                         <button data-id="{{ $dt->id }}" id="btn-edit"
@@ -79,7 +79,7 @@
                                 <option value="admin">Admin</option>
                                 <option value="apoteker">Apotoker</option>
                                 <option value="manager">Manager</option>
-                                {{-- <option value="sales">Sales</option> --}}
+                                <option value="kasir">Kasir</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -93,6 +93,10 @@
                         <div class="form-group">
                             <label for="password">Password</label>
                             <input type="type" name="password" id="password" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="nomer_tlpn">Nomer Telepon</label>
+                            <input type="type" name="text" id="nomer_tlpn" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="password_confirmation">Comfirm Password</label>
@@ -309,6 +313,7 @@
                             <option ${hasil.role === 'admin'?'selected':''} value="admin">Admin</option>
                             <option ${hasil.role === 'apoteker'?'selected':''} value="apoteker">Apoteker</option>
                             <option ${hasil.role === 'manager'?'selected':''} value="manager">Manager</option>
+                            <option ${hasil.role === 'kasir'?'selected':''} value="kasir">Kasir</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -319,6 +324,10 @@
                             <option ${hasil.status_aktif === 'tidak'?'selected':''} value="tidak">Tidak</option>
                         </select>
                     </div>
+                    <div class="form-group">
+                            <label for="nomer_tlpn">Nomer Telepon</label>
+                            <input type="type" name="text" id="nomer_tlpn" value="${hasil.nomer_tlpn}" class="form-control">
+                        </div>
                     <div class="form-group">
                         <label class="d-block">Image</label>
                         <img class="d-block" width="150" src="{{ env('APP_URL') }}${hasil.avatar}" alt="image sub">
