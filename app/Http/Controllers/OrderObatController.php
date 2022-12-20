@@ -25,7 +25,7 @@ class OrderObatController extends Controller
     }
     public function create()
     {
-        $obats = Obat::all();
+        $obats = Obat::with("satuan")->get();
         $no_faktur = Transaksi::generateNoFaktur();
         $satuans = Satuan::all();
         $customers = Customer::all();

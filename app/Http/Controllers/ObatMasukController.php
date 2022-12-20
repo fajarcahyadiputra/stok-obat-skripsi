@@ -34,7 +34,7 @@ class ObatMasukController extends Controller
     {
         if ($request->input('checkStok')) {
             $kode_obat = $request->input('kode_obat');
-            $obat = Obat::find($kode_obat);
+            $obat = Obat::with("satuan")->find($kode_obat);
             return response()->json($obat);
         }
         try {

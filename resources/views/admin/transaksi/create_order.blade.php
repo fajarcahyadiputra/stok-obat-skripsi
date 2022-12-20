@@ -20,14 +20,16 @@
                                         <select class="custom-select" id="kode_obat">
                                             <option value="" disabled selected hidden>-- Pilih Obat --</option>
                                             @foreach ($obats as $obat)
-                                                <option value="{{ $obat->kode_obat }}">{{ $obat->nama }}</option>
+                                                <option value="{{ $obat->kode_obat }}">
+                                                    {{ $obat->nama . '-' . $obat->satuan->satuan }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <label for="satuan_id">Satuan</label>
+                                        <label for="satuan_id">Satuan Order</label>
                                         <select class="custom-select" id="satuan_id">
                                             <option value="" disabled selected hidden>-- Pilih Satuan --</option>
                                             @foreach ($satuans as $satuan)
@@ -61,7 +63,8 @@
                                             min="1"class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-1 d-flex align-items-center">
+
+                                <div class=" d-flex align-items-center">
                                     {{-- <label for="">Add</label> --}}
                                     <button type="button" class="btn mt-3 btn-primary btn-add-to-cart"><i
                                             class="fa fa-plus"></i></button>

@@ -21,10 +21,9 @@
                                 <th>Jumlah</th>
                                 <th>Khasiat</th>
                                 <th>Satuan</th>
-                                <th>tanggal Kadaluarsa</th>
+                                <th>Tanggal Kadaluarsa</th>
                                 <th>Harga</th>
                                 @if (auth()->user()->role == 'apoteker' || auth()->user()->role == 'manager')
-                                    )
                                     <th>Action</th>
                                 @endif
                             </tr>
@@ -32,19 +31,21 @@
                         <tbody>
                             @foreach ($obats as $no => $dt)
                                 <tr>
-                                    <td>{{ $no + 1 }}</td>
-                                    <td>{{ $dt->nama }}</td>
-                                    <td>{{ $dt->jumlah }}</td>
-                                    <td>{{ $dt->khasiat_obat }}</td>
-                                    <td>{{ $dt->satuan->satuan }}</td>
-                                    <td>{{ $dt->tanggal_kadaluarsa }}</td>
-                                    <td>Rp.{{ number_format($dt->harga_satuan, 2, ',', '.') }}</td>
+                                    <td class="align-middle">{{ $no + 1 }}</td>
+                                    <td class="align-middle">{{ $dt->nama }}</td>
+                                    <td class="align-middle">{{ $dt->jumlah }}</td>
+                                    <td class="align-middle">{{ $dt->khasiat_obat }}</td>
+                                    <td class="align-middle">{{ $dt->satuan->satuan }}</td>
+                                    <td class="align-middle">{{ $dt->tanggal_kadaluarsa }}</td>
+                                    <td class="align-middle">Rp.{{ number_format($dt->harga_satuan, 2, ',', '.') }}</td>
                                     @if (auth()->user()->role == 'apoteker' || auth()->user()->role == 'manager')
                                         <td class="text-center">
-                                            <button data-id="{{ $dt->kode_obat }}" id="btn-edit"
-                                                class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
-                                            <button data-id="{{ $dt->kode_obat }}" id="btn-hapus"
-                                                class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                            <div class="d-flex">
+                                                <button data-id="{{ $dt->kode_obat }}" id="btn-edit"
+                                                    class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
+                                                <button data-id="{{ $dt->kode_obat }}" id="btn-hapus"
+                                                    class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                                            </div>
                                             <button data-id="{{ $dt->kode_obat }}" id="btn-detail"
                                                 class="btn btn-info btn-sm"><i class="fa fa-info"></i></button>
                                         </td>

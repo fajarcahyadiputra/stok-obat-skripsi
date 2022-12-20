@@ -13,7 +13,7 @@
                     <div class="col-sm-4">
                         <div class="card">
                             <div class="card-body">
-                                <h6 class="card-title">Total uang yang masuk hari ini:</h6>
+                                <h6 class="card-title">Total Uang Yang Masuk Hari Ini:</h6>
                                 <p class="card-text"><b>Rp.{{ number_format($total_price, 2, ',', '.') }}</b>
                                 </p>
                                 {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
@@ -23,7 +23,7 @@
                     <div class="col-sm-4">
                         <div class="card">
                             <div class="card-body">
-                                <h6 class="card-title">Total pembeli hari ini:</h6>
+                                <h6 class="card-title">Total Pembeli Hari Ini:</h6>
                                 <p class="card-text text-bold"><b>{{ $total_transaksi }} Pembeli</b>
                                 </p>
                                 {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}

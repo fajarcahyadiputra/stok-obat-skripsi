@@ -32,11 +32,16 @@
 
                             </select>
                         </div>
+
                         <div class="form-group">
                             <label for="jumlah">Jumlah Stok Masuk</label>
                             <input required type="number" min="1" name="jumlah" id="jumlah" value="1"
                                 class="form-control">
                             <span class="alert-obat-kosong text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="satuan">Satuan Obat</label>
+                            <input readonly type="text" required id="satuan" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="jumlah_sebelumnya">Jumlah Sebelumnya</label>
@@ -51,6 +56,7 @@
                             <label for="penerima">Penerima</label>
                             <input type="text" required name="penerima" id="penerima" class="form-control">
                         </div>
+
                         <div class="form-group">
                             <label for="satuan">Satuan</label>
                             <select required name="satuan_id" class="form-control" id="satuan">
@@ -96,8 +102,8 @@
                             <label for="nama">Nama</label>
                             <input type="type" name="nama_barang" id="nama" class="form-control">
                             <!-- </div>
-                                                                                                                                                                                                                                                                                            <div class="form-group">
-                                                                                                                                                                                                                                                                                                <label for="jumlah">Jumlah</label> -->
+                                                                                                                                                                                                                                                                                                                                                            <div class="form-group">
+                                                                                                                                                                                                                                                                                                                                                                <label for="jumlah">Jumlah</label> -->
                             <input type="hidden" name="jumlah" id="jumlah" value="0" class="form-control">
                             <!-- </div> -->
                             <div class="form-group">
@@ -194,6 +200,7 @@
                         $('#jumlah_sebelumnya').val(jumlah);
                         const total = parseInt(jumlah) + parseInt(jumlah_masuk);
                         $('#total_stok').val(total);
+                        $('#satuan').val(result.satuan.satuan)
                     }
                 })
             })
