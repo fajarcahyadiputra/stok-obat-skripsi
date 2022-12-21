@@ -2,10 +2,11 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>copyright &copy; 2022 - Apoteker Swadaya Sehat
+            <span>copyright &copy;
                 <script>
                     document.write(new Date().getFullYear());
-                </script>
+                </script> - Apoteker Swadaya Sehat
+
                 {{-- <b><a href="" target="_blank"></a></b> --}}
             </span>
         </div>

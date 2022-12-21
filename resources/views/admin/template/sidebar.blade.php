@@ -3,11 +3,11 @@
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
         <a class="sidebar-brand d-flex align-items-center justify-content-center" style="background-color: skyblue;"
             href="/">
-            <div class="sidebar-brand-text mx-2 ">APOTEKER</div>
+            <div class="sidebar-brand-text mx-2 ">Swadaya Sehat</div>
         </a>
         <li class="nav-item p-2" style="font-size: 15px">
             <center><b>
-                    <p style="font-size: 12px">Apoteker</p>
+                    <p style="font-size: 12px">{{ auth()->user()->role }}</p>
                 </b></center>
         </li>
         <hr class="sidebar-divider">

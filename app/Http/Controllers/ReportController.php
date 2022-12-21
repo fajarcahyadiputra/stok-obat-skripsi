@@ -11,6 +11,7 @@ use App\Models\Customer;
 use App\Models\DetailBarangkeluar;
 use App\Models\Obat;
 use App\Models\ObatMasuk;
+use App\Models\Satuan;
 use App\Models\Transaksi;
 use Carbon\Carbon;
 
@@ -57,11 +58,18 @@ class ReportController extends Controller
         } else if (request()->input('laporan') == "obat") {
             //laporan obat
             if (request()->input('option-report') == "all") {
-                $obats = Obat::with("detailTransaksi", "obatMasuk")->get();
+                $obats = Obat::with(['obatMasuk', 'detailTransaksi' => function ($query) {
+                    $query->with('satuan', 'obat');
+                    // $query->select('satuan.satuan', 'satuan.jumlah_persatuan');
+                }])->get();
             } else {
-                $obats = Obat::with("detailTransaksi", "obatMasuk")->whereDate('created_at', '>=', $dari)
+                $obats = Obat::with(["detailTransaksi" => function ($q) {
+                    $q->select("satuan.satuan * detailTransaksi.jumlah as jumlah_keluar");
+                    $q->join('satuan', 'satuan.id', '=', 'detailTransaksi.satuan_id');
+                }])->with(['obatMasuk'])->whereDate('created_at', '>=', $dari)
                     ->whereDate('created_at', '<=', $sampai)->get();
             }
+            // dd($obats);
             return PDF::loadView('admin.laporan.laporan-obat', compact('obats'))->stream('laporan_obat.pdf');
         }
     }

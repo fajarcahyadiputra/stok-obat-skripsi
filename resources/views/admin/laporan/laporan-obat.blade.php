@@ -34,7 +34,15 @@
     <tbody>
         @foreach ($obats as $no => $dt)
             @php
-                $totalStokKeluar = array_sum(array_column($dt->detailTransaksi->toArray(), 'jumlah'));
+                $totalStokKeluar = 0;
+                foreach ($dt->detailTransaksi as $order) {
+                    if ($order->obat->satuan_id != $order->satuan_id) {
+                        $totalStokKeluar += $order->satuan->jumlah_persatuan * $order->jumlah;
+                    } else {
+                        $totalStokKeluar += $order->jumlah;
+                    }
+                }
+                // $totalStokKeluar = array_sum(array_column($dt->detailTransaksi->toArray(), 'jumlah'));
                 $totalStokMasuk = array_sum(array_column($dt->obatMasuk->toArray(), 'jumlah'));
             @endphp
             <tr style="text-align:center">

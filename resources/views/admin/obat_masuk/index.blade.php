@@ -14,14 +14,14 @@
                     <table class="table table-bordered table-striped table-hover" id="datatable">
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Nama Obat</th>
-                                <th>Supplier</th>
-                                <th>Satuan</th>
-                                <th>Jumlah Sebelumnya</th>
-                                <th>Jumlah Masuk</th>
-                                <th>Total Stok</th>
-                                <th>Tanggal Masuk</th>
+                                <th class="text-sm">No</th>
+                                <th class="text-sm">Nama Obat</th>
+                                <th class="text-sm">Supplier</th>
+                                <th class="text-sm">Satuan</th>
+                                <th class="text-sm">Stok Sebelum</th>
+                                <th class="text-sm">Stok masuk</th>
+                                <th class="text-sm">Total Stok</th>
+                                <th class="text-sm">Tanggal Masuk</th>
                                 @if (auth()->user()->role == 'apoteker' || auth()->user()->role == 'manager')
                                     <th>Action</th>
                                 @endif
