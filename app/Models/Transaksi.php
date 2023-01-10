@@ -12,7 +12,7 @@ class Transaksi extends Model
     protected $table = 'transaksi';
     protected $keyType = 'string';
     protected $primaryKey = 'nomer_faktur';
-    protected $fillable = ['nomer_faktur', 'kasir', 'nik', 'tanggal_transaksi', 'sub_total', 'status_transaksi', 'keterangan'];
+    protected $fillable = ['nomer_faktur', 'kasir', 'nik', 'tanggal_transaksi', 'sub_total', 'status_transaksi', 'keterangan','kurang','kembalian','total_bayar'];
     protected $casts = [
         'created_at' => 'datetime:Y-m-d H:i:s',
         'updated_at' => 'datetime:Y-m-d H:i:s'

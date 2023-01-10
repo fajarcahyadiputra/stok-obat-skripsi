@@ -64,6 +64,9 @@ class OrderObatController extends Controller
             $data['kasir'] = auth()->user()->id;
             $data['status_transkasi'] = 'success';
             $data['sub_total'] = array_sum(array_column($cartData, 'total_harga'));
+            $data['total_bayar'] = preg_replace('/\D/', '', $request->total_bayar);
+            $data['kembalian'] = preg_replace('/\D/', '', $request->kembalian);
+            $data['kurang'] = preg_replace('/\D/', '', $request->kurang);
             DB::beginTransaction();
             $create = Transaksi::create($data);
             if (request()->session()->exists('dataObat')) {

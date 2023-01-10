@@ -19,6 +19,9 @@
                                 <th>Nama Customer</th>
                                 <th>Tanggal Transaksi</th>
                                 <th>Total Harga</th>
+                                <th>Total Bayar</th>
+                                <th>Kembalian</th>
+                                <th>Kurang</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -30,6 +33,9 @@
                                     <td>{{ $dt->customer->nama . '-' . $dt->customer->nik }}</td>
                                     <td>{{ $dt->tanggal_transaksi }}</td>
                                     <td>Rp.{{ number_format($dt->sub_total, 2, ',', '.') }}</td>
+                                    <td>Rp.{{ number_format($dt->total_bayar, 2, ',', '.') }}</td>
+                                    <td>Rp.{{ number_format($dt->kembalian, 2, ',', '.') }}</td>
+                                    <td>Rp.{{ number_format($dt->kurang, 2, ',', '.') }}</td>
                                     <td class="d-flex">
                                         @if (auth()->user()->role == 'kasir' || auth()->user()->role === 'manager')
                                             <button data-id="{{ $dt->nomer_faktur }}" id="btn-hapus"

@@ -129,6 +129,28 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="total_bayar">Total Bayar </label>
+                                    <input required type="text" id="total_bayar" name="total_bayar" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="kembalian">Kembalian </label>
+                                    <input required readonly type="text" step="0" minlength="0" id="kembalian"
+                                        name="kembalian" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="kurang">Kurang</label>
+                                    <input required readonly type="text" step="0" minlength="0" id="kurang"
+                                        name="kurang" class="form-control">
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="keterangan">Keterangan</label>
                             <textarea class="form-control" name="keterangan" id="keterangan" cols="30" rows="5"></textarea>
@@ -240,7 +262,25 @@
                     }
                 })
             })
-
+            //kembalian action
+            $(document).on("change", "#total_bayar", function() {
+                const value = $(this).val();
+                $(this).val(formatRupiah(value))
+            })
+            $(document).on("keyup", "#total_bayar", function() {
+                const total_harga = parseInt("{{ $sub_total_harga }}");
+                const total_bayar = $(this).val();
+                const result = total_harga - total_bayar;
+                $("#kurang").val(0)
+                $("#kembalian").val(0)
+                if (total_harga > total_bayar) {
+                    $('#kurang').val(formatRupiah(result))
+                } else {
+                    const kembalian = total_harga - total_bayar;
+                    $("#kembalian").val(formatRupiah(parseInt(kembalian.toString().replace(/\-/g, ''))))
+                }
+                // $(this).val(result)
+            })
             //format rupiah
             const formatRupiah = (money) => {
                 return new Intl.NumberFormat('id-ID', {
